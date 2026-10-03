@@ -7,7 +7,7 @@ function priceLabel(plan) {
 
 function ctaFor(plan) {
   if (plan.id === "free") return { label: "Get started", className: "btn btn-ghost" };
-  if (plan.featured) return { label: "Submit", className: "btn btn-muted" };
+  if (plan.featured) return { label: "Upgrade to Pro", className: "btn btn-primary" };
   return { label: "Contact sales", className: "btn btn-ghost" };
 }
 
