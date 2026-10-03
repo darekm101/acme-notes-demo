@@ -11,7 +11,7 @@ export const plans = [
     id: "pro",
     name: "Pro",
     tagline: "For people who live in their notes",
-    priceMonthly: 240,
+    priceMonthly: 24,
     featured: true,
     features: ["Everything in Free", "Unlimited devices", "AI search", "Version history"],
   },
