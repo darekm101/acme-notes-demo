@@ -1,8 +1,16 @@
 import { plans } from "./plans.js";
 
+// Annual is the default billing period (issue #3).
+let billing = "annual";
+
 function priceLabel(plan) {
-  if (plan.priceMonthly === 0) return "$0";
-  return `$${plan.priceMonthly}`;
+  const amount = billing === "annual" ? plan.priceAnnual : plan.priceMonthly;
+  return `$${amount}`;
+}
+
+function billingNote(plan) {
+  if (plan.priceMonthly === 0) return "free forever";
+  return billing === "annual" ? `billed yearly ($${plan.priceAnnual * 12})` : "billed monthly";
 }
 
 function ctaFor(plan) {
@@ -21,11 +29,22 @@ function renderPlan(plan) {
     <h2>${plan.name}</h2>
     <p class="tagline">${plan.tagline}</p>
     <div class="price"><span class="amount">${priceLabel(plan)}</span><span class="per">/mo</span></div>
+    <p class="billing-note">${billingNote(plan)}</p>
     <button class="${cta.className}" data-cta="${plan.id}">${cta.label}</button>
     <ul>${plan.features.map((f) => `<li>${f}</li>`).join("")}</ul>
   `;
   return el;
 }
 
-const root = document.getElementById("plans");
-plans.forEach((plan) => root.appendChild(renderPlan(plan)));
+function render() {
+  const root = document.getElementById("plans");
+  root.replaceChildren(...plans.map(renderPlan));
+  document.querySelectorAll("[data-billing]").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.billing === billing));
+  });
+}
+
+document.querySelectorAll("[data-billing]").forEach((b) => {
+  b.addEventListener("click", () => { billing = b.dataset.billing; render(); });
+});
+render();
