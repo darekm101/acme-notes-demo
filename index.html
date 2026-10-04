@@ -16,7 +16,21 @@
       <h1>Simple pricing for focused teams</h1>
       <p>Start free. Upgrade when your notes outgrow you.</p>
     </section>
+    <div class="billing-toggle" role="group" aria-label="Billing period">
+      <button type="button" data-billing="monthly" aria-pressed="false">Monthly</button>
+      <button type="button" data-billing="annual" aria-pressed="true">Annual <span class="save">2 months free</span></button>
+    </div>
     <section class="plans" id="plans"></section>
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Questions, answered</h2>
+      <details><summary>Can I switch between monthly and annual?</summary><p>Yes. Switch any time from Settings; annual saves you two months.</p></details>
+      <details><summary>What happens to my notes if I downgrade?</summary><p>Nothing is deleted. Notes beyond the Free limits become read-only until you upgrade again.</p></details>
+      <details><summary>Do you offer refunds?</summary><p>Annual plans are refundable within 30 days, no questions asked.</p></details>
+    </section>
+    <section class="testimonial" aria-label="What customers say">
+      <blockquote>“We stopped losing decisions in chat. Acme Notes is where our team thinks.”</blockquote>
+      <p class="who"><strong>Priya Shah</strong>, Head of Research at Lumen Labs</p>
+    </section>
   </main>
   <script type="module" src="src/app.js"></script>
 </body>
